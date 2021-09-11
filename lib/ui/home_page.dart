@@ -9,58 +9,390 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  ValueNotifier<int> _topTabIndex = ValueNotifier(0);
+  ValueNotifier<int> _bottomTabIndex = ValueNotifier(0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 3,
-              child: Container(
-                decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                  BoxShadow(color: Colors.blueGrey[400]!, offset: Offset(0, 4)),
-                  BoxShadow(color: Colors.grey[200]!, offset: Offset(0, 6)),
-                ]),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.settings),
+        child: ValueListenableBuilder(
+          valueListenable: _bottomTabIndex,
+          builder: (context, value, child) {
+            if (value == 0) {
+              return Column(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blueGrey[400]!,
+                            offset: Offset(0, 4),
                           ),
+                          BoxShadow(
+                            color: Colors.grey[200]!,
+                            offset: Offset(0, 6),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
                           Expanded(
-                            child: Center(
-                              child: Text(
-                                'Haibooks Organization',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(Icons.settings),
+                                  ),
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        'Haibooks Organization',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  Badge(
+                                    child: Icon(Icons.charging_station),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                          Badge(
-                            child: Icon(Icons.charging_station),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 16),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _topTabIndex.value = 0;
+                                      },
+                                      child: ValueListenableBuilder(
+                                        valueListenable: _topTabIndex,
+                                        builder: (context, value, child) {
+                                          return Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 20),
+                                            decoration: BoxDecoration(
+                                              color: value == 0
+                                                  ? Colors.blueGrey[50]
+                                                  : Colors.transparent,
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                'Last month',
+                                                style: TextStyle(
+                                                  color: value == 0
+                                                      ? Colors.blue
+                                                      : Colors.grey,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _topTabIndex.value = 1;
+                                      },
+                                      child: ValueListenableBuilder(
+                                        valueListenable: _topTabIndex,
+                                        builder: (context, value, child) {
+                                          return Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 20),
+                                            decoration: BoxDecoration(
+                                              color: value == 1
+                                                  ? Colors.blueGrey[50]
+                                                  : Colors.transparent,
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                '6 months',
+                                                style: TextStyle(
+                                                  color: value == 1
+                                                      ? Colors.blue
+                                                      : Colors.grey,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _topTabIndex.value = 2;
+                                      },
+                                      child: ValueListenableBuilder(
+                                        valueListenable: _topTabIndex,
+                                        builder: (context, value, child) {
+                                          return Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 20),
+                                            decoration: BoxDecoration(
+                                              color: value == 2
+                                                  ? Colors.blueGrey[50]
+                                                  : Colors.transparent,
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                'Fiscal year',
+                                                style: TextStyle(
+                                                  color: value == 2
+                                                      ? Colors.blue
+                                                      : Colors.grey,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    Expanded(
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Expanded(
+                    flex: 15,
+                    child: ValueListenableBuilder<int>(
+                      builder: (context, value, child) {
+                        if (value == 0) {
+                          return Text('Last month page');
+                        } else if (value == 1) {
+                          return Text('6 month page');
+                        } else {
+                          return Text('Fiscal year page');
+                        }
+                      },
+                      valueListenable: _topTabIndex,
                       child: Placeholder(),
                     ),
-                  ],
+                  ),
+                ],
+              );
+            } else {
+              return Container(
+                child: Center(
+                  child: Text('Menu'),
+                ),
+              );
+            }
+          },
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blueGrey[400]!,
+                        offset: Offset(0, 4),
+                      ),
+                      BoxShadow(
+                        color: Colors.grey[200]!,
+                        offset: Offset(0, 6),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.settings),
+                              ),
+                              Expanded(
+                                child: Center(
+                                  child: Text(
+                                    'Haibooks Organization',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              Badge(
+                                child: Icon(Icons.charging_station),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _topTabIndex.value = 0;
+                                  },
+                                  child: ValueListenableBuilder(
+                                    valueListenable: _topTabIndex,
+                                    builder: (context, value, child) {
+                                      return Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        decoration: BoxDecoration(
+                                          color: value == 0
+                                              ? Colors.blueGrey[50]
+                                              : Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'Last month',
+                                            style: TextStyle(
+                                              color: value == 0
+                                                  ? Colors.blue
+                                                  : Colors.grey,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _topTabIndex.value = 1;
+                                  },
+                                  child: ValueListenableBuilder(
+                                    valueListenable: _topTabIndex,
+                                    builder: (context, value, child) {
+                                      return Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        decoration: BoxDecoration(
+                                          color: value == 1
+                                              ? Colors.blueGrey[50]
+                                              : Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            '6 months',
+                                            style: TextStyle(
+                                              color: value == 1
+                                                  ? Colors.blue
+                                                  : Colors.grey,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _topTabIndex.value = 2;
+                                  },
+                                  child: ValueListenableBuilder(
+                                    valueListenable: _topTabIndex,
+                                    builder: (context, value, child) {
+                                      return Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        decoration: BoxDecoration(
+                                          color: value == 2
+                                              ? Colors.blueGrey[50]
+                                              : Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'Fiscal year',
+                                            style: TextStyle(
+                                              color: value == 2
+                                                  ? Colors.blue
+                                                  : Colors.grey,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Expanded(
-              flex: 15,
-              child: Placeholder(),
-            ),
-          ],
+              SizedBox(
+                height: 16,
+              ),
+              Expanded(
+                flex: 15,
+                child: Placeholder(),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -72,18 +404,51 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.dashboard,
-                      size: 20,
+                child: GestureDetector(
+                  onTap: () {
+                    _bottomTabIndex.value = 0;
+                  },
+                  child: ValueListenableBuilder<int>(
+                    valueListenable: _bottomTabIndex,
+                    builder: (context, value, child) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.dashboard,
+                            size: 20,
+                            color: value == 0 ? Colors.blue : Colors.blueGrey,
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            'Dashboard',
+                            style: TextStyle(
+                              color: value == 0 ? Colors.blue : Colors.grey,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.dashboard,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          'Dashboard',
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text('Dashboard'),
-                  ],
+                  ),
                 ),
               ),
               Expanded(
@@ -93,18 +458,50 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.menu,
-                      size: 20,
+                child: GestureDetector(
+                  onTap: () {
+                    _bottomTabIndex.value = 1;
+                  },
+                  child: ValueListenableBuilder<int>(
+                    valueListenable: _bottomTabIndex,
+                    builder: (context, value, child) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.menu,
+                            size: 20,
+                            color: value == 1 ? Colors.blue : Colors.blueGrey,
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            'Menu',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.menu,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          'Menu',
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text('Menu'),
-                  ],
+                  ),
                 ),
               ),
             ],

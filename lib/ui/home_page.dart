@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     flex: 3,
                     child: Container(
+                      margin: EdgeInsets.only(bottom: 4),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         boxShadow: [
@@ -200,7 +201,162 @@ class _HomePageState extends State<HomePage> {
                         if (value == 0) {
                           return Text('Last month page');
                         } else if (value == 1) {
-                          return Text('6 month page');
+                          return SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.bar_chart),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                      Text(
+                                        'Profit and Loss',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Container(
+                                  height: 420,
+                                  width: double.infinity,
+                                  decoration:
+                                      BoxDecoration(color: Colors.white),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        '\$ 980.16',
+                                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8),
+                                        child: Text(
+                                          'Net Profit',
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                      ),
+                                      Divider(
+                                        indent: 16,
+                                        endIndent: 16,
+                                      ),
+                                      SizedBox(
+                                        height: 240,
+                                        child: Container(
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 30,
+                                                  width: 8,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.tealAccent[700],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 8,
+                                                ),
+                                                Text('Income'),
+                                                Spacer(),
+                                                Text('Expenses'),
+                                                SizedBox(
+                                                  width: 8,
+                                                ),
+                                                Container(
+                                                  height: 30,
+                                                  width: 8,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.blue,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(height: 4,),
+                                            Row(
+                                              children: [
+
+                                                Text(
+                                                  '\$ 3,460.24',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.tealAccent[700],
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                Spacer(),
+                                                Text(
+                                                  '\$ 2,480.08',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.blue,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.bar_chart),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                      Text(
+                                        'Banking',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(Icons.keyboard_arrow_right),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                              ],
+                            ),
+                          );
                         } else {
                           return Text('Fiscal year page');
                         }

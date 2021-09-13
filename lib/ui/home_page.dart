@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -227,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                                   height: 16,
                                 ),
                                 Container(
-                                  height: 420,
+                                  height: 430,
                                   width: double.infinity,
                                   decoration:
                                       BoxDecoration(color: Colors.white),
@@ -235,14 +236,19 @@ class _HomePageState extends State<HomePage> {
                                     children: [
                                       Text(
                                         '\$ 980.16',
-                                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+                                        style: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.w400),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 8),
                                         child: Text(
                                           'Net Profit',
-                                          style: TextStyle(fontSize: 12),
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey,
+                                          ),
                                         ),
                                       ),
                                       Divider(
@@ -250,13 +256,151 @@ class _HomePageState extends State<HomePage> {
                                         endIndent: 16,
                                       ),
                                       SizedBox(
+                                        height: 16,
+                                      ),
+                                      SizedBox(
                                         height: 240,
                                         child: Container(
-                                          color: Colors.blue,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: BarChart(
+                                              BarChartData(
+                                                borderData:
+                                                    FlBorderData(show: false),
+                                                barGroups: [
+                                                  BarChartGroupData(
+                                                      x: 0,
+                                                      barsSpace: 8,
+                                                      barRods: [
+                                                        BarChartRodData(
+                                                          y: 2000,
+                                                          colors: [Colors.teal],
+                                                        ),
+                                                        BarChartRodData(
+                                                          y: 1500,
+                                                          colors: [Colors.blue],
+                                                        ),
+                                                      ]),
+                                                  BarChartGroupData(
+                                                      x: 1,
+                                                      barsSpace: 8,
+                                                      barRods: [
+                                                        BarChartRodData(
+                                                          y: 3500,
+                                                          colors: [Colors.teal],
+                                                        ),
+                                                        BarChartRodData(
+                                                          y: 3000,
+                                                          colors: [Colors.blue],
+                                                        ),
+                                                      ]),
+                                                  BarChartGroupData(
+                                                      x: 2,
+                                                      barsSpace: 8,
+                                                      barRods: [
+                                                        BarChartRodData(
+                                                          y: 1200,
+                                                          colors: [Colors.teal],
+                                                        ),
+                                                        BarChartRodData(
+                                                          y: 1900,
+                                                          colors: [Colors.blue],
+                                                        ),
+                                                      ]),
+                                                  BarChartGroupData(
+                                                      x: 3,
+                                                      barsSpace: 8,
+                                                      barRods: [
+                                                        BarChartRodData(
+                                                          y: 2000,
+                                                          colors: [Colors.teal],
+                                                        ),
+                                                        BarChartRodData(
+                                                          y: 1500,
+                                                          colors: [Colors.blue],
+                                                        ),
+                                                      ]),
+                                                  BarChartGroupData(
+                                                      x: 4,
+                                                      barsSpace: 8,
+                                                      barRods: [
+                                                        BarChartRodData(
+                                                          y: 3000,
+                                                          colors: [Colors.teal],
+                                                        ),
+                                                        BarChartRodData(
+                                                          y: 2000,
+                                                          colors: [Colors.blue],
+                                                        ),
+                                                      ]),
+                                                  BarChartGroupData(
+                                                    x: 5,
+                                                    barsSpace: 8,
+                                                    barRods: [
+                                                      BarChartRodData(
+                                                        y: 3100,
+                                                        colors: [Colors.teal],
+                                                      ),
+                                                      BarChartRodData(
+                                                        y: 2100,
+                                                        colors: [Colors.blue],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                                gridData:
+                                                    FlGridData(show: false),
+                                                titlesData: FlTitlesData(
+                                                    leftTitles: SideTitles(
+                                                        showTitles: true,
+                                                        getTextStyles:
+                                                            (context, value) {
+                                                          return TextStyle(
+                                                            color: Colors.grey,
+                                                            fontSize: 12,
+                                                          );
+                                                        },
+                                                        interval: 1000),
+                                                    bottomTitles: SideTitles(
+                                                        showTitles: true,
+                                                        getTextStyles:
+                                                            (context, value) {
+                                                          return TextStyle(
+                                                            color: Colors.grey,
+                                                            fontSize: 12,
+                                                          );
+                                                        },
+                                                        getTitles: (v) {
+                                                          switch (v.toInt()) {
+                                                            case 0:
+                                                              return 'Aug';
+                                                            case 1:
+                                                              return 'Sep';
+                                                            case 2:
+                                                              return 'Oct';
+                                                            case 3:
+                                                              return 'Nov';
+                                                            case 4:
+                                                              return 'Dec';
+                                                            case 5:
+                                                              return 'Jan';
+                                                            case 6:
+                                                              return 'Feb';
+                                                            default:
+                                                              return '??';
+                                                          }
+                                                        }),
+                                                    rightTitles: SideTitles(
+                                                        showTitles: false),
+                                                    topTitles: SideTitles(
+                                                        showTitles: false)),
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 16,
+                                        height: 12,
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
@@ -268,7 +412,8 @@ class _HomePageState extends State<HomePage> {
                                                   height: 30,
                                                   width: 8,
                                                   decoration: BoxDecoration(
-                                                    color: Colors.tealAccent[700],
+                                                    color:
+                                                        Colors.tealAccent[700],
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8),
@@ -295,15 +440,17 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(height: 4,),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
                                             Row(
                                               children: [
-
                                                 Text(
                                                   '\$ 3,460.24',
                                                   style: TextStyle(
                                                     fontSize: 18,
-                                                    color: Colors.tealAccent[700],
+                                                    color:
+                                                        Colors.tealAccent[700],
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
